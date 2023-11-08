@@ -1,4 +1,4 @@
-package org.daniel;
+package org.daniel.bo;
 
 public class City {
     public String name;
