@@ -1,14 +1,16 @@
 package org.daniel.bo;
 
-public class City {
+public class CityData {
     public String name;
     public String country;
-    public float temperature;
+    public String temp;
+    public String dateTime;
 
-    public City(String name, String country, float temperature) {
+    public CityData(String name, String country, String temp, String dateTime) {
         this.name = name;
         this.country = country;
-        this.temperature = temperature;
+        this.temp = temp;
+        this.dateTime = dateTime;
     }
 
     public String getName() {
@@ -27,12 +29,20 @@ public class City {
         this.country = country;
     }
 
-    public float getTemperature() {
-        return temperature;
+    public String getTemperature() {
+        return temp;
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
+    public void setTemperature(String temperature) {
+        this.temp = temperature;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -40,7 +50,8 @@ public class City {
         return "City{" +
                 "name='" + name + '\'' +
                 ", country='" + country + '\'' +
-                ", temperature='" + temperature + '\'' +
+                ", temperature='" + temp + '\'' +
+                ", dateTime='" + dateTime + '\'' +
                 '}';
     }
 }
