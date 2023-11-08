@@ -17,6 +17,7 @@ import org.apache.hc.client5.http.classic.methods.*;
 
 import java.io.StringReader;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @ApplicationScoped
@@ -47,7 +48,7 @@ public class KafkaProducer {
                     String country = jsonObject.getJsonObject("sys").getString("country");
                     String temp = String.valueOf(jsonObject.getJsonObject("main").getJsonNumber("temp"));
 
-                    String dateTime = LocalDateTime.now().toString();
+                    String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
                     CityData cityData = new CityData(name, country, temp, dateTime);
                     System.out.println("["+ dateTime+ "] -> [REQUEST] Temperature in " + city + ": " + temp);
                     cityDataEmittermitter.send(cityData);
