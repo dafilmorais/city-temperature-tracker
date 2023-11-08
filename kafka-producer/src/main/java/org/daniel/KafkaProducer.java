@@ -14,7 +14,6 @@ import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 import io.quarkus.scheduler.Scheduled;
 import org.apache.hc.client5.http.classic.methods.*;
-
 import java.io.StringReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,16 +24,16 @@ public class KafkaProducer {
     @Inject
     @Channel("city-out")
     Emitter<CityData> cityDataEmittermitter;
-
     @ConfigProperty(name = "openweather.api.key")
-    String apiKey;
+    private String apiKey;
 
     @Scheduled(every = "1m")
     public void getWeatherForTwoCities() {
-        getWeatherForCity("Porto");
-        getWeatherForCity("Lisbon");
+            getWeatherForCity("Porto");
+            getWeatherForCity("Lisbon");
     }
-    private void getWeatherForCity(String city) {
+
+    private CityData getWeatherForCity(String city) {
         String apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -52,6 +51,7 @@ public class KafkaProducer {
                     CityData cityData = new CityData(name, country, temp, dateTime);
                     System.out.println("["+ dateTime+ "] -> [REQUEST] Temperature in " + city + ": " + temp);
                     cityDataEmittermitter.send(cityData);
+                    return cityData;
                 } else {
                     System.err.println("Failed to fetch weather data for " + city + ". HTTP Status Code: " + response.getCode());
                 }
@@ -59,5 +59,6 @@ public class KafkaProducer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
