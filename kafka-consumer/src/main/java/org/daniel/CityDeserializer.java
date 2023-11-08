@@ -1,10 +1,11 @@
 package org.daniel;
 
-import io.quarkus.kafka.client.serialization.ObjectMapperDeserializer;
-import org.daniel.bo.City;
 
-public class CityDeserializer extends ObjectMapperDeserializer<City> {
+import io.quarkus.kafka.client.serialization.ObjectMapperDeserializer;
+import org.daniel.bo.CityData;
+
+public class CityDeserializer extends ObjectMapperDeserializer<CityData> {
     public CityDeserializer() {
-        super(City.class);
+        super(CityData.class);
     }
 }
