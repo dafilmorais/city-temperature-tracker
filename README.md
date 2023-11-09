@@ -1,45 +1,65 @@
-# Monitorização de Temperatura em Duas Cidades
+# [Quarkus + Kafka] : "Temperature Monitoring in Two Cities"
 
-Este repositório contém uma aplicação desenvolvida como parte de um desafio. A aplicação é projetada para recolher e processar dados de temperatura de duas cidades distintas e armazená-los para análise posterior.
+This application is designed to collect and process temperature data from two distinct cities and store them for later analysis. In this specific case, it collects the temperature data from Porto and Lisbon every 2 minutes and saves the data to a PostgreSQL database.
 
-## Descrição do Desafio
+## Challenge Description
 
-O objetivo deste desafio é criar uma aplicação composta por dois microserviços: um produtor e um consumidor.
+The goal of this challenge is to create an application composed of two microservices: a producer and a consumer.
 
-- O microserviço **Produtor** é responsável por recolher dados de temperatura de duas cidades diferentes em intervalos regulares (por exemplo, a cada 5 minutos) e enviá-los para um tópico em um message broker. Cada mensagem deve conter informações sobre a cidade, temperatura e data e hora.
+- The **Producer** microservice is responsible for collecting temperature data from two different cities at regular intervals (e.g., every 5 minutes) and sending them to a topic on a message broker. Each message should contain information about the city, temperature, and date and time.
 
-- O microserviço **Consumidor** deve consumir os dados do tópico do message broker em tempo real e armazená-los em um banco de dados PostgreSQL para análise posterior.
+- The **Consumer** microservice should consume data from the message broker's topic in real-time and store it in a PostgreSQL database for later analysis.
 
-## Pré-Requisitos
+## Technologies :computer:
 
-Certifique-se de ter os seguintes pré-requisitos instalados antes de executar a aplicação:
-
+This project uses the following technologies:
 - [Quarkus](https://quarkus.io/)
-- Message Broker (Kafka, ActiveMQ ou Mosquitto)
+- [Apache Kafka](https://kafka.apache.org/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/)
+- [Docker](https://www.docker.com/)
 
-## Estrutura do Repositório
+## Repository Structure :construction:
 
-O repositório está organizado da seguinte forma:
+The repository is organized as follows:
 
-- `produtor/`: Código-fonte e recursos do microserviço Produtor.
-- `consumidor/`: Código-fonte e recursos do microserviço Consumidor.
-- `docker-compose.yml`: Arquivo de configuração do Docker Compose para instanciar os contêineres do message broker e PostgreSQL.
-- `docs/`: Documentação adicional, se necessário.
+- `kafka-consumer/`: Source code and resources for the Consumer microservice, implemented with Quarkus.
+- `kafka-producer/`: Source code and resources for the Producer microservice.
+- `docker-compose.yml`: Docker Compose configuration file to initialize the containers.
+- `start.sh`: This script compiles the two Docker images and executes the Docker Compose.
 
-## Configuração e Uso
+## Prerequisites :warning:
 
-Antes de executar a aplicação, siga as instruções de configuração e uso em cada diretório do microserviço (produtor e consumidor) e o arquivo `docker-compose.yml` para configurar os contêineres Docker.
+ To run this project, you must have Docker installed.<br> Refer to [Docker](https://www.docker.com/) for more information about this tool.
 
-## Contribuição
+## Configuration and Usage :wrench:
 
-Este é um projeto de desafio, mas contribuições são bem-vindas. Se desejar contribuir, siga as diretrizes de contribuição do projeto.
 
-## Licença
+ Make sure you have <b><u>Docker installed and running</u></b>: 
 
-Este projeto está sob a [licença XYZ](LICENSE).
 
----
+``> docker info`` 
 
-Sinta-se à vontade para personalizar este arquivo `README.md` de acordo com as necessidades do seu repositório. Inclua informações adicionais, como exemplos de código, capturas de tela, instruções detalhadas ou qualquer outra informação relevante para os usuários e colaboradores do seu projeto.
+
+ In the <b><u>root directory</u></b> of this project, <b><u>run the script</u></b> using the following command: 
+
+
+``> ./start.sh`` 
+
+ This script builds the two docker images from the source code and initializes them in containers. After the containers are up and running, use your database viewer tool (e.g., DBeaver) and configure it as follows:
+
+```bash
+# Database Connection
+Username: postgres
+Password: postgres
+URL: jdbc:postgresql://localhost:5432/city-temp-db
+```
+![DBeaver Configuration](./docs/assets/DBEaver-Config.png)
+
+ The <b><u>database is always cleared when the project executes.</u></b> This is done so that you can see the insertion of data more easily, for demonstration purposes.<br> <br>Right-click the table and refresh it and view the data. It should have some new data <b><u>after every two minutes</u></b>:
+
+![Data Table](./docs/assets/data-table.png)
+
+# Conclusion :rocket:
+
+I hope you can use this project to learn more about implementing these technologies all together. Happy coding! :coffee:
+
