@@ -53,7 +53,7 @@ Username: postgres
 Password: postgres
 URL: jdbc:postgresql://localhost:5432/city-temp-db
 ```
-![DBeaver Configuration](./docs/assets/DBEaver-Config.png)
+![DBeaver Configuration](./docs/assets/dbeaver-config.png)
 
  The <b><u>database is always cleared when the project executes.</u></b> This is done so that you can see the insertion of data more easily, for demonstration purposes.<br> <br>Right-click the table and refresh it and view the data. It should have some new data <b><u>after every two minutes</u></b>:
 
