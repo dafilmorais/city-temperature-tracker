@@ -61,6 +61,8 @@ URL: jdbc:postgresql://localhost:5432/city-temp-db
 
 ![Data Table](./docs/assets/data-table.png)
 
+If there is no data being recieved from OpenWeatherAPI, you can insert your own API key in ./kafka-producer/src/main/resources/application.properties and change the "openweather.api.key" property with your own key. 
+
 # Conclusion :rocket:
 
 I hope you can use this project to learn more about implementing these technologies all together. Happy coding! :coffee:
