@@ -29,7 +29,9 @@ The repository is organized as follows:
 
 ## Prerequisites :warning:
 
- To run this project, you must have Docker installed.<br> Refer to [Docker](https://www.docker.com/) for more information about this tool.
+ To run this project, you must have:
+-  [Docker](https://www.docker.com/) -- for building & initialize the containers.
+-  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [GitBash](https://git-scm.com/downloads) -- for running the execution script.
 
 ## Configuration and Usage :wrench:
 
