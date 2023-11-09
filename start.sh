@@ -1,5 +1,16 @@
 #!/bin/bash
 
+
+# Run 'mvn package' in kafka-consumer directory
+cd kafka-consumer
+mvn package
+cd ..
+
+# Run 'mvn package' in kafka-producer directory
+cd kafka-producer
+mvn package
+cd ..
+
 producer_image_name="kafka/producer"
 producer_image_tag="latest"
 consumer_image_name="kafka/consumer"

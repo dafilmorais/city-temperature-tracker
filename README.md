@@ -31,6 +31,7 @@ The repository is organized as follows:
 
  To run this project, you must have:
 -  [Docker](https://www.docker.com/) -- for building & initialize the containers.
+-  [Maven](https://maven.apache.org/install.html) -- for building the packages.
 -  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [GitBash](https://git-scm.com/downloads) -- for running the execution script.
 
 ## Configuration and Usage :wrench:
