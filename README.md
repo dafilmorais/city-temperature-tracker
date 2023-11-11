@@ -31,14 +31,15 @@ The repository is organized as follows:
 
  To run this project, you must have:
 -  [Docker](https://www.docker.com/) -- for building & initialize the containers.
--  [Java 11]([https://www.docker.com/](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)) -- quarkus dependency
+-  [Java 11 or later](https://www.java.com/en/download/manual.jsp)-- quarkus dependency
 -  [Maven](https://maven.apache.org/install.html) -- for building the packages.
 -  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [GitBash](https://git-scm.com/downloads) -- for running the execution script.
 
 ## Configuration and Usage :wrench:
 
+OpenWeatherAPI - In ./kafka-producer/src/main/resources/application.properties and change the "openweather.api.key" property with your own key. 
 
- Make sure you have <b><u>Docker installed and running</u></b>: 
+Make sure you have <b><u>Docker installed and running</u></b>: 
 
 
 ``> docker info`` 
@@ -60,8 +61,6 @@ URL: jdbc:postgresql://localhost:5432/city-temp-db
  The <b><u>database is always cleared when the project executes.</u></b> This is done so that you can see the insertion of data more easily, for demonstration purposes.<br> <br>Right-click the table and refresh it and view the data. It should have some new data <b><u>after every two minutes</u></b>:
 
 ![Data Table](./docs/assets/data-table.png)
-
-If there is no data being recieved from OpenWeatherAPI, you can insert your own API key in ./kafka-producer/src/main/resources/application.properties and change the "openweather.api.key" property with your own key. 
 
 # Conclusion :rocket:
 
