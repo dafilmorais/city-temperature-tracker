@@ -1,21 +1,29 @@
 # [Quarkus + Angular] : "REST Service returning labseq sequence"
 
-This application is designed to collect and process temperature data from two distinct cities and store them for later analysis. In this specific case, it collects the temperature data from Porto and Lisbon every 2 minutes and saves the data to a PostgreSQL database.
+This application is designed to create an interactive labseq sequence calculator using Quarkus for the backend and Angular for the frontend.
 
 ## Challenge Description
 
-The goal of this challenge is to create an application composed of two microservices: a producer and a consumer.
+The goal of this challenge is to create an interactive labseq sequence calculator using Quarkus for the backend and Angular for the frontend.
 
-- The **Producer** microservice is responsible for collecting temperature data from two different cities at regular intervals (e.g., every 5 minutes) and sending them to a topic on a message broker. Each message should contain information about the city, temperature, and date and time.
+- The **Backend Service** should implement a RESTful API that calculates and returns values from the labseq sequence. The labseq – `l(n)` - sequence is defined as follows:
+  - `n=0 => l(0) = 0`
+  - `n=1 => l(1) = 1`
+  - `n=2 => l(2) = 0`
+  - `n=3 => l(3) = 1`
+  - `n>3 => l(n) = l(n-4) + l(n-3)`
 
-- The **Consumer** microservice should consume data from the message broker's topic in real-time and store it in a PostgreSQL database for later analysis.
+The **Endpoint** should be in the form `<baseurl>/labseq/{n}` where `{n}` represents the index of the sequence’s (single) value to return. The index may be any non-negative integer number.
+
+The implemented service should use a caching mechanism to take advantage of previous calculations to speed up future calculations. This caching mechanism must be used in the algorithm’s intermediate calculations (if applicable), and not only in the endpoint’s invocations.
+
+- The **Frontend** should be an Angular application that provides a simple user interface to invoke the labseq sequence calculation service. Users should be able to input a value for `n` and receive the corresponding `l(n)` value.
 
 ## Technologies :computer:
 
 This project uses the following technologies:
 - [Quarkus](https://quarkus.io/)
-- [Apache Kafka](https://kafka.apache.org/)
-- [PostgreSQL](https://www.postgresql.org/)
+- [Angular](https://angular.io/)
 - [Docker](https://www.docker.com/)
 
 ## Repository Structure :construction:
@@ -31,7 +39,7 @@ The repository is organized as follows:
 
  To run this project, you must have:
 -  [Docker](https://www.docker.com/) -- for building & initialize the containers.
--  [Java 21](https://www.java.com/en/download/manual.jsp)-- quarkus dependency.
+-  [Java 21](https://www.oracle.com/java/technologies/downloads/)-- quarkus dependency.
 -  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [GitBash](https://git-scm.com/downloads) -- for running the execution script.
 
 ## Configuration and Usage :wrench:
@@ -40,17 +48,16 @@ Make sure you have <b><u>Docker installed and running</u></b>:
 
 ``> docker info`` 
 
-
  In the <b><u>root directory</u></b> of this project, <b><u>run the script</u></b> using the following command: 
-
 
 ``> ./start.sh`` 
 
  This script builds the two docker images from the source code and initializes them in containers. After the containers are up and running, access the frontend URL:
+ 
+- [Angular Frontend (Labseq Calculator)](http:\\localhost)
+- [SwaggerUI Backend](http://localhost/q/swagger-ui/)
 
-- `http:\\localhost`: Angular Frontend (Labseq Calculator).
-
-Verify the address in your Docker
+Verify the addresses in your Docker.
 
 # Conclusion :rocket:
 
