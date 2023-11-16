@@ -1,4 +1,4 @@
-# [Quarkus + Kafka] : "Temperature Monitoring in Two Cities"
+# [Quarkus + Angular] : "REST Service returning labseq sequence"
 
 This application is designed to collect and process temperature data from two distinct cities and store them for later analysis. In this specific case, it collects the temperature data from Porto and Lisbon every 2 minutes and saves the data to a PostgreSQL database.
 
@@ -22,25 +22,21 @@ This project uses the following technologies:
 
 The repository is organized as follows:
 
-- `kafka-consumer/`: Source code and resources for the Consumer microservice, implemented with Quarkus.
-- `kafka-producer/`: Source code and resources for the Producer microservice.
+- `backend/`: Source code and resources for the Quarkus backend.
+- `frontend/`: Source code and resources for the Angular frontend.
 - `docker-compose.yml`: Docker Compose configuration file to initialize the containers.
-- `start.sh`: This script compiles the two Docker images and executes the Docker Compose.
+- `start.sh`: This script builds and compiles the two Docker images in order to execute this project.
 
 ## Prerequisites :warning:
 
  To run this project, you must have:
 -  [Docker](https://www.docker.com/) -- for building & initialize the containers.
--  [Java 11 or later](https://www.java.com/en/download/manual.jsp)-- quarkus dependency
--  [Maven](https://maven.apache.org/install.html) -- for building the packages.
+-  [Java 21](https://www.java.com/en/download/manual.jsp)-- quarkus dependency.
 -  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or [GitBash](https://git-scm.com/downloads) -- for running the execution script.
 
 ## Configuration and Usage :wrench:
 
-OpenWeatherAPI - In ./kafka-producer/src/main/resources/application.properties and change the "openweather.api.key" property with your own key. 
-
 Make sure you have <b><u>Docker installed and running</u></b>: 
-
 
 ``> docker info`` 
 
@@ -50,19 +46,13 @@ Make sure you have <b><u>Docker installed and running</u></b>:
 
 ``> ./start.sh`` 
 
- This script builds the two docker images from the source code and initializes them in containers. After the containers are up and running, use your database viewer tool (e.g., DBeaver) and configure it as follows:
+ This script builds the two docker images from the source code and initializes them in containers. After the containers are up and running, access the frontend URL:
 
-```bash
-# Database Connection
-Username: postgres
-Password: postgres
-URL: jdbc:postgresql://localhost:5432/city-temp-db
-```
- The <b><u>database is always cleared when the project executes.</u></b> This is done so that you can see the insertion of data more easily, for demonstration purposes.<br> <br>Right-click the table and refresh it and view the data. It should have some new data <b><u>after every two minutes</u></b>:
+- `http:\\localhost`: Angular Frontend (Labseq Calculator).
 
-![Data Table](./docs/assets/data-table.png)
+Verify the address in your Docker
 
 # Conclusion :rocket:
 
-I hope you can use this project to learn more about implementing these technologies all together. Happy coding! :coffee:
+I hope you can use this project to learn more about implementing Quafka + Angular + Docker. Happy coding! :coffee:
 
